@@ -29,6 +29,7 @@ class Main extends React.Component
             <main>
                 <Search searchMovie={ this.searchMovie } />
                 {
+                    this.state.movies == null ? <h1>Введите поисковый запрос</h1> :
                     this.state.movies.length == 0 ?
                     <Preloader /> :
                     <MovieList movies={this.state.movies} />
