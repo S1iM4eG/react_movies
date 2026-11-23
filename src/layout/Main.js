@@ -31,7 +31,9 @@ class Main extends React.Component
                 {
                     this.state.movies == null ? <h1>Введите поисковый запрос</h1> :
                     this.state.movies.length == 0 ?
-                    <Preloader /> :
+                    <div className="preloader-wrapper">
+                        <Preloader />
+                    </div> :
                     <MovieList movies={this.state.movies} />
                 }
             </main>
