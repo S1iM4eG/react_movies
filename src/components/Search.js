@@ -25,13 +25,12 @@ class Search extends React.Component
             () => this.props.searchMovie(this.state.search, this.state.type)
         )
     }
-    prevPage = () =>
-    {
+    prevPage = () => {
         this.setState
-        (
-            () => (this.state.page > 1 ? { page: this.state.page - 1 } : { page: 1 }),
-            () => {this.props.searchMovie(this.state.search, this.state.type, this.state.page) }  
-        )
+            (
+                () => (this.state.page > 1 ? { page: this.state.page - 1 } : { page: 1 }),
+                () => this.props.searchMovie(this.state.search, this.state.type, this.state.page)
+            )
     }
     nextPage = () =>
     {
@@ -67,7 +66,7 @@ class Search extends React.Component
                         placeholder="Поиск"
                         value={this.state.search}
                         onChange={(e) => this.setState({ search: e.target.value })}
-                        onKeyUp={this.handleKey}
+                        onKeyDown={this.handleKey}
                     />
                     <button onClick={() => this.props.searchMovie(this.state.search, this.state.type)} className="btn">
                         Поиск
@@ -81,15 +80,14 @@ class Search extends React.Component
                 </div>
                 <div className="pagination">
                     <button className="btn" onClick={this.prevPage} >Prev</button>
-                    <div classname="page-numbers">
+                    <div className="page-numbers">
                     {
                         num.slice(firstIndex, lastIndex).map
                         (
                             (element, index) =>
                             (
                                 <button className="btn"
-                                    key={index}
-                                    onClick={() => this.setState(element) }
+                                    onClick={() => this.setPage(element) }
                                 >
                                     {element}
                                 </button>
